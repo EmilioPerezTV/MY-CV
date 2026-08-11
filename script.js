@@ -1,116 +1,3 @@
-// ==================== CONTADOR DE VISITAS REAL (Global) ====================
-(function() {
-    const visitEl = document.getElementById('visitCount');
-    if (!visitEl) return;
-
-    fetch('https://api.countapi.xyz/hit/emilioperez-cv/visitas')
-        .then(response => response.json())
-        .then(data => {
-            visitEl.textContent = data.value.toLocaleString();
-        })
-        .catch(err => {
-            console.error('Error de carga del contador:', err);
-            visitEl.textContent = "1";
-        });
-})();
-
-// ==================== API INFO IP ====================
-(function() {
-    window.ipData = { ip: 'No disponible', country: 'No disponible', isp: 'No disponible', asn: 'No disponible' };
-
-    // Usamos ip-api.com que es más permisiva para GitHub Pages
-    fetch('https://ip-api.com/json/')
-        .then(response => {
-            if (!response.ok) throw new Error('Respuesta no exitosa');
-            return response.json();
-        })
-        .then(data => {
-            if (data.status === 'success') {
-                window.ipData = {
-                    ip: data.query || 'No disponible',
-                    country: data.country || 'No disponible',
-                    isp: data.isp || 'No disponible',
-                    asn: data.as || 'No disponible'
-                };
-            }
-
-            const ipEl = document.querySelector('.js-user-ip');
-            const countryEl = document.querySelector('.js-user-country');
-            const ispEl = document.querySelector('.js-user-ISP');
-            const asnEl = document.querySelector('.js-user-ASN');
-
-            if (ipEl) ipEl.textContent = window.ipData.ip;
-            if (countryEl) countryEl.textContent = window.ipData.country;
-            if (ispEl) ispEl.textContent = window.ipData.isp;
-            if (asnEl) asnEl.textContent = window.ipData.asn;
-        })
-        .catch(err => {
-            console.error('Error al obtener IP:', err);
-            const elements = ['.js-user-ip', '.js-user-country', '.js-user-ISP', '.js-user-ASN'];
-            elements.forEach(selector => {
-                const el = document.querySelector(selector);
-                if (el) el.textContent = 'No disponible';
-            });
-        });
-})();
-
-// ==================== ALTERNAR DATOS IP ====================
-document.getElementById('hideIpBtn').addEventListener('click', function(e) {
-    e.preventDefault();
-
-    const ipEl = document.querySelector('.js-user-ip');
-    const ispEl = document.querySelector('.js-user-ISP');
-    const asnEl = document.querySelector('.js-user-ASN');
-
-    const isHidden = this.getAttribute('data-hidden') === 'true';
-
-    if (!isHidden) {
-        // Ocultar datos
-        if (ipEl) ipEl.textContent = '***.***.***.***';
-        if (ispEl) ispEl.textContent = '********';
-        if (asnEl) asnEl.textContent = '********';
-
-        this.textContent = 'Muestra IP';
-        this.setAttribute('data-hidden', 'true');
-        this.style.background = '#0066cc';
-    } else {
-        // Mostrar datos originales guardados en window.ipData
-        if (ipEl) ipEl.textContent = window.ipData.ip;
-        if (ispEl) ipEl.textContent = window.ipData.isp;
-        if (asnEl) asnEl.textContent = window.ipData.asn;
-
-        this.textContent = 'Oculta tu IP';
-        this.setAttribute('data-hidden', 'false');
-        this.style.background = '#333';
-    }
-});
-
-// ==================== LÓGICA DE LIKE ====================
-(function() {
-    const likeBtn = document.getElementById('likeBtn');
-    const likeModal = document.getElementById('likeModal');
-    const likeModalClose = document.getElementById('likeModalClose');
-    const likeForm = document.getElementById('likeForm');
-
-    if (!likeBtn || !likeModal) return;
-
-    likeBtn.addEventListener('click', () => {
-        likeModal.classList.add('active');
-    });
-
-    likeModalClose.addEventListener('click', () => {
-        likeModal.classList.remove('active');
-    });
-
-    likeForm.addEventListener('submit', (e) => {
-        // Formspree maneja el envío automáticamente, solo cerramos el modal
-        setTimeout(() => {
-            likeModal.classList.remove('active');
-            alert('¡Gracias por tu Like! Se ha enviado tu verificación.');
-        }, 500);
-    });
-})();
-
 // ==================== SMOOTH SCROLL Y NAVEGACIÓN ====================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -533,9 +420,20 @@ themeToggle.addEventListener('click', () => {
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
+    // Animación de transición de 1s para el cambio de tema
+    html.classList.add('theme-anim');
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateThemeIcon();
+
+    // Animación de giro del icono
+    const icon = themeToggle.querySelector('i');
+    if (icon) {
+        icon.classList.add('spin');
+        setTimeout(() => icon.classList.remove('spin'), 800);
+    }
+
+    setTimeout(() => html.classList.remove('theme-anim'), 1000);
 });
 
 // ==================== FONDO DE RED NEURONAL ====================

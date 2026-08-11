@@ -48,20 +48,6 @@
                 <div class="profile-image-frame">
                     <img src="PERFIL - EMILIO PEREZ FONDO BLANCO.jpg" alt="Emilio Pérez" class="profile-image">
                 </div>
-                <!-- Cuadro de Estadísticas -->
-                <div class="stats-box">
-                    <div class="stat-item">
-                        <i class="fas fa-eye"></i>
-                        <span>Visitas:</span>
-                        <span id="visitCount" style="font-weight: bold; color: var(--primary-color);">0</span>
-                    </div>
-                    <div class="stat-item">
-                        <button id="likeBtn" class="like-button">
-                            <i class="fas fa-heart"></i>
-                            <span id="likeCount">0</span> Likes
-                        </button>
-                    </div>
-                </div>
             </div>
             <h1 class="hero-title">Emilio Rómulo Pérez Flores</h1>
 
@@ -76,7 +62,7 @@
                     <div class="terminal-dot green"></div>
                 </div>
                 <div class="terminal-content">
-                    <span style="color: white;">emilio@system:~$</span> <span id="terminal-text" style="color: white;"><strong>Hola Soy un Profesional en Desarrollo Web | Administración | Servicios Técnicos | Seguridad | Trader | Integridad de datos | Ciberdefensa | Seguridad</strong></span><span class="terminal-cursor"></span>
+                    <span style="color: white;">emilio@admin:~$</span> <span id="terminal-text" style="color: white;"><strong>Hola Soy un Profesional en Desarrollo Web | Administración | Servicios Técnicos | Seguridad | Trader | Integridad de datos | Ciberdefensa | Seguridad</strong></span><span class="terminal-cursor"></span>
                 </div>
             </div>
             <div class="hero-clock">
@@ -603,6 +589,30 @@
                         <span class="skill-tag skill-tag--wallet"><i class="fas fa-star fa-sm"></i> Nova Wallet</span>
                         <span class="skill-tag skill-tag--wallet"><i class="fas fa-cube fa-sm"></i> Ergo Wallet</span>
                     </div>
+
+                    <!-- Herramientas de Trading -->
+                    <div class="skill-card__subheader skill-card__subheader--trading">
+                        <i class="fas fa-chart-line fa-sm"></i> <span>Herramientas de Trading</span>
+                    </div>
+                    <div class="skill-card__tags">
+                        <span class="skill-tag skill-tag--trading"><img class="skill-tag-logo" src="https://www.google.com/s2/favicons?domain=tradingview.com&amp;sz=32" alt="TradingView" loading="lazy"> TradingView</span>
+                        <span class="skill-tag skill-tag--trading"><img class="skill-tag-logo" src="https://www.google.com/s2/favicons?domain=prorealtime.com&amp;sz=32" alt="ProRealTime" loading="lazy"> ProRealTime</span>
+                        <span class="skill-tag skill-tag--trading"><img class="skill-tag-logo" src="https://www.google.com/s2/favicons?domain=coinglass.com&amp;sz=32" alt="CoinGlass" loading="lazy"> CoinGlass</span>
+                        <span class="skill-tag skill-tag--trading"><img class="skill-tag-logo" src="https://www.google.com/s2/favicons?domain=metatrader.com&amp;sz=32" alt="MetaTrader" loading="lazy"> MetaTrader</span>
+                    </div>
+
+                    <!-- DEX Screeners / Monitores On-Chain -->
+                    <div class="skill-card__subheader skill-card__subheader--dex">
+                        <i class="fas fa-magnifying-glass-chart fa-sm"></i> <span>DEX Screeners / Monitores On-Chain</span>
+                    </div>
+                    <div class="skill-card__tags">
+                        <span class="skill-tag skill-tag--dex"><img class="skill-tag-logo" src="https://www.google.com/s2/favicons?domain=coinmarketcap.com&amp;sz=32" alt="CoinMarketCap" loading="lazy"> CoinMarketCap</span>
+                        <span class="skill-tag skill-tag--dex"><img class="skill-tag-logo" src="https://www.google.com/s2/favicons?domain=coingecko.com&amp;sz=32" alt="CoinGecko" loading="lazy"> CoinGecko</span>
+                        <span class="skill-tag skill-tag--dex"><img class="skill-tag-logo" src="https://www.google.com/s2/favicons?domain=geckoterminal.com&amp;sz=32" alt="GeckoTerminal" loading="lazy"> GeckoTerminal</span>
+                        <span class="skill-tag skill-tag--dex"><img class="skill-tag-logo" src="https://www.google.com/s2/favicons?domain=dexscreener.com&amp;sz=32" alt="DexScreener" loading="lazy"> DexScreener</span>
+                        <span class="skill-tag skill-tag--dex"><img class="skill-tag-logo" src="https://www.google.com/s2/favicons?domain=gmgn.ai&amp;sz=32" alt="GMGN" loading="lazy"> GMGN</span>
+                        <span class="skill-tag skill-tag--dex"><img class="skill-tag-logo" src="https://www.google.com/s2/favicons?domain=glassnode.com&amp;sz=32" alt="Glassnode" loading="lazy"> Glassnode</span>
+                    </div>
                 </article>
             </div>
 
@@ -871,20 +881,6 @@
             <p>Diseñado y desarrollado con <i class="fas fa-heart"></i> para profesionales</p>
         </div>
     </footer>
-
-    <!-- Modal de Like -->
-    <div class="qr-modal" id="likeModal" role="dialog" aria-modal="true" aria-label="Validar Like">
-        <div class="qr-modal-inner">
-            <button class="qr-modal-close" id="likeModalClose" aria-label="Cerrar">&times;</button>
-            <h3>¡Gracias por tu Like!</h3>
-            <p>Ingresa tu email para verificar tu voto:</p>
-            <form action="https://formspree.io/f/xvgzvjdp" method="POST" id="likeForm">
-                <input type="email" name="email" placeholder="tu@email.com" required style="width: 100%; padding: 10px; margin: 15px 0; border-radius: 5px; border: 1px solid #ccc;">
-                <input type="hidden" name="action" value="like">
-                <button type="submit" class="btn btn-primary">Enviar Verificación</button>
-            </form>
-        </div>
-    </div>
 
     <!-- QR Modal -->
     <div class="qr-modal" id="qrModal" role="dialog" aria-modal="true" aria-label="Código QR ampliado">

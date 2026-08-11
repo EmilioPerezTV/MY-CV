@@ -14,14 +14,40 @@
 
 /* Dark Theme */
 [data-theme="dark"] {
-    --bg-color: #0a0a0a;
-    --text-color: #f0f0f0;
+    --bg-color: #0a0d14;
+    --card-bg: #151b26;
+    --text-color: #eef3f9;
     --primary-color: #4da6ff;
-    --secondary-color: #3385ff;
-    --accent-color: #80bfff;
-    --border-color: rgba(255, 255, 255, 0.15);
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+    --secondary-color: #6db3ff;
+    --accent-color: #8ec9ff;
+    --border-color: rgba(255, 255, 255, 0.16);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.65);
+}
+
+/* Transición suave de 1s al cambiar de tema */
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+    transition: background-color 1s ease,
+                color 1s ease,
+                border-color 1s ease,
+                box-shadow 1s ease,
+                fill 1s ease,
+                stroke 1s ease,
+                opacity 1s ease !important;
+}
+
+/* Giro del icono del botón de tema */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.theme-toggle i.spin {
+    display: inline-block;
+    animation: spin 0.8s ease;
 }
 
 * {
@@ -88,29 +114,6 @@ body {
     background: #000;
 }
 
-.stat-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    color: var(--text-color);
-    font-weight: 600;
-}
-
-.like-button {
-    background: transparent;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-    padding: 8px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.like-button:hover {
-    background: var(--primary-color);
-    color: white;
-}
 .navbar {
     background: var(--bg-color);
     padding: 0.8rem 0;
@@ -202,7 +205,7 @@ body {
 
 .nav-link:hover {
     transform: translateY(-2px);
-    color: #fff;
+    color: var(--primary-color);
 }
 
 /* Botón de cambio de tema */
@@ -253,6 +256,10 @@ body {
     background: #000000;
     margin: 5px 0;
     transition: var(--transition);
+}
+
+[data-theme="dark"] .hamburger span {
+    background: #ffffff;
 }
 
 /* ==================== HERO SECTION ==================== */
@@ -331,7 +338,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
     display: block;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     animation: fadeInScale 0.25s ease forwards;
@@ -740,6 +747,137 @@ section {
 [data-theme="dark"] .badge {
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
 }
+
+/* ==================== CONTRASTE MODO OSCURO ==================== */
+/* Tarjetas: fondo ligeramente más claro que la página para distinguirlas */
+[data-theme="dark"] .experience-card,
+[data-theme="dark"] .activity-card,
+[data-theme="dark"] .course-card,
+[data-theme="dark"] .timeline-content,
+[data-theme="dark"] .reference-card,
+[data-theme="dark"] .info-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--primary-color);
+}
+
+[data-theme="dark"] .info-item:hover {
+    border-left-color: var(--accent-color);
+}
+
+[data-theme="dark"] .skill-card {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+    border-left: 5px solid var(--primary-color);
+}
+
+/* Tags de habilidades en modo oscuro: fondo oscuro + texto claro */
+[data-theme="dark"] .skill-tag {
+    background: rgba(77, 166, 255, 0.1);
+    border-color: rgba(77, 166, 255, 0.28);
+    color: #d6e6ff;
+}
+
+[data-theme="dark"] .skill-tag i {
+    color: #80bfff;
+}
+
+[data-theme="dark"] .skill-card__subheader {
+    background: rgba(77, 166, 255, 0.1);
+    border-color: rgba(77, 166, 255, 0.28);
+    color: #a8d4ff;
+}
+
+[data-theme="dark"] .skill-card__subheader i {
+    color: #80bfff;
+}
+
+[data-theme="dark"] .skill-card__subheader--ai { color: #c4b5fd; }
+[data-theme="dark"] .skill-card__subheader--admin { color: #93c5fd; }
+[data-theme="dark"] .skill-card__subheader--av { color: #fca5a5; }
+[data-theme="dark"] .skill-card__subheader--spy { color: #fdba74; }
+[data-theme="dark"] .skill-card__subheader--vpn { color: #67e8f9; }
+[data-theme="dark"] .skill-card__subheader--iso { color: #fcd34d; }
+[data-theme="dark"] .skill-card__subheader--disk { color: #c7d2fe; }
+
+[data-theme="dark"] .skill-tag--native {
+    background: rgba(217, 119, 6, 0.16);
+    border-color: rgba(245, 158, 11, 0.35);
+    color: #fcd34d;
+}
+[data-theme="dark"] .skill-tag--native i { color: #fbbf24; }
+
+[data-theme="dark"] .skill-tag--ai {
+    background: rgba(124, 58, 237, 0.16);
+    border-color: rgba(167, 139, 250, 0.32);
+    color: #c4b5fd;
+}
+[data-theme="dark"] .skill-tag--ai i { color: #a78bfa; }
+
+[data-theme="dark"] .skill-tag--admin {
+    background: rgba(37, 99, 235, 0.16);
+    border-color: rgba(59, 130, 246, 0.32);
+    color: #93c5fd;
+}
+[data-theme="dark"] .skill-tag--admin i { color: #60a5fa; }
+
+[data-theme="dark"] .skill-tag--av {
+    background: rgba(239, 68, 68, 0.16);
+    border-color: rgba(248, 113, 113, 0.32);
+    color: #fca5a5;
+}
+[data-theme="dark"] .skill-tag--av i { color: #f87171; }
+
+[data-theme="dark"] .skill-tag--spy {
+    background: rgba(234, 88, 12, 0.16);
+    border-color: rgba(251, 146, 60, 0.32);
+    color: #fdba74;
+}
+[data-theme="dark"] .skill-tag--spy i { color: #fb923c; }
+
+[data-theme="dark"] .skill-tag--vpn {
+    background: rgba(6, 182, 212, 0.16);
+    border-color: rgba(34, 211, 238, 0.32);
+    color: #67e8f9;
+}
+[data-theme="dark"] .skill-tag--vpn i { color: #22d3ee; }
+
+[data-theme="dark"] .skill-tag--iso {
+    background: rgba(245, 158, 11, 0.16);
+    border-color: rgba(251, 191, 36, 0.32);
+    color: #fcd34d;
+}
+[data-theme="dark"] .skill-tag--iso i { color: #fbbf24; }
+
+[data-theme="dark"] .skill-tag--disk {
+    background: rgba(99, 102, 241, 0.16);
+    border-color: rgba(129, 140, 248, 0.32);
+    color: #c7d2fe;
+}
+[data-theme="dark"] .skill-tag--disk i { color: #a5b4fc; }
+
+[data-theme="dark"] .skill-tag--wallet {
+    background: rgba(217, 119, 6, 0.16);
+    border-color: rgba(245, 158, 11, 0.32);
+    color: #fcd34d;
+}
+[data-theme="dark"] .skill-tag--wallet i { color: #fbbf24; }
+
+[data-theme="dark"] .skill-card__subheader--trading { color: #6ee7b7; }
+[data-theme="dark"] .skill-tag--trading {
+    background: rgba(16, 185, 129, 0.16);
+    border-color: rgba(52, 211, 153, 0.32);
+    color: #6ee7b7;
+}
+[data-theme="dark"] .skill-tag--trading i { color: #34d399; }
+
+[data-theme="dark"] .skill-card__subheader--dex { color: #d8b4fe; }
+[data-theme="dark"] .skill-tag--dex {
+    background: rgba(168, 85, 247, 0.16);
+    border-color: rgba(216, 180, 254, 0.32);
+    color: #d8b4fe;
+}
+[data-theme="dark"] .skill-tag--dex i { color: #c084fc; }
 
 /* ==================== ACTIVITIES SECTION ==================== */
 .activities {
@@ -1502,6 +1640,47 @@ section {
 .skill-tag--wallet:hover {
     box-shadow: 0 6px 20px rgba(217,119,6,0.3);
 }
+
+/* Logo dentro de los skill-tags (imagen web) */
+.skill-tag-logo {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* ── Herramientas de Trading — verde esmeralda ── */
+.skill-card__subheader--trading {
+    background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(52,211,153,0.15));
+    border-color: rgba(16,185,129,0.28);
+    color: #065f46;
+}
+.skill-card__subheader--trading i { color: #059669; }
+.skill-tag--trading {
+    background: linear-gradient(135deg, #d1fae5 0%, #ecfdf5 100%);
+    border-color: rgba(16,185,129,0.22);
+    color: #065f46;
+}
+.skill-tag--trading i { color: #059669; }
+.skill-tag--trading::before { background: linear-gradient(135deg, #10b981, #34d399); }
+.skill-tag--trading:hover { box-shadow: 0 6px 20px rgba(16,185,129,0.3); }
+
+/* ── DEX Screeners / On-Chain — violeta ── */
+.skill-card__subheader--dex {
+    background: linear-gradient(135deg, rgba(168,85,247,0.1), rgba(217,70,239,0.15));
+    border-color: rgba(168,85,247,0.28);
+    color: #6b21a8;
+}
+.skill-card__subheader--dex i { color: #a855f7; }
+.skill-tag--dex {
+    background: linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%);
+    border-color: rgba(168,85,247,0.22);
+    color: #6b21a8;
+}
+.skill-tag--dex i { color: #a855f7; }
+.skill-tag--dex::before { background: linear-gradient(135deg, #a855f7, #e879f9); }
+.skill-tag--dex:hover { box-shadow: 0 6px 20px rgba(168,85,247,0.3); }
 
 /* ── Programas Administrativos — azul oscuro ── */
 .skill-card__subheader--admin {
